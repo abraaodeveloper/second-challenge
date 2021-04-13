@@ -1,0 +1,36 @@
+body{
+    background-image: radial-gradient(circle, #d2ff07 0%, #3d7935 100%);
+}
+header{
+    margin: 1em 0 1em 0;
+}
+
+.content-game{
+    width: min-content;
+    margin: auto;
+}
+
+.info-players, .player{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.info-players{
+    justify-content: space-between;
+}
+
+.player{
+    padding: 1.2em;
+    border-radius: .3em;
+    height: 2em;
+    border: 3px solid rgb(0, 183, 255);
+}
+
+.player svg{
+    
+}
+
+.player h3{
+    margin-left: .4em;
+}
