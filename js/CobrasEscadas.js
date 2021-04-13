@@ -13,15 +13,17 @@ export default class CobrasEscadas {
 
     gerarTabuleiro(tamanho) {
         let direcao = 1;
-        for (let x = 10; x > 0; x--) {
-            if (direcao === 1) {
-                for (let y = 0; y < 10; y++)
+
+        for (let y = 9; y >= 0; y--) {
+            if (direcao == 1) {
+                for (let x = 0; x < 10; x++) {
                     this.tabuleiro.push({ x: parseInt(x * tamanho), y: parseInt(y * tamanho) });
+                }
 
             } else {
-                for (let y = 10; y >
-                    0; y--)
+                for (let x = 9; x >= 0; x--) {
                     this.tabuleiro.push({ x: parseInt(x * tamanho), y: parseInt(y * tamanho) });
+                }
             }
             direcao *= -1; // inverte direção
         }

@@ -7,26 +7,26 @@ import CobrasEscadas from "./CobrasEscadas.js";
     const background = new Image();
     background.src = '././imgs/tabuleiro.png';
 
-    const tamanho = innerHeight < innerWidth ?
+    const tamanhoGame = innerHeight < innerWidth ?
         innerHeight - innerHeight * .15 : innerWidth - innerWidth * .15;
 
-    canvas.width = tamanho;
-    canvas.height = tamanho;
+    canvas.width = tamanhoGame;
+    canvas.height = tamanhoGame;
 
-    const cobrasEscadas = new CobrasEscadas( tamanho / 10);
-
+    const cobrasEscadas = new CobrasEscadas(tamanhoGame / 10);
+    const tamanho = tamanhoGame / 10;
 
     function frameUpdate() {
-        context.drawImage(background, 0, 0, tamanho, tamanho);
+        context.drawImage(background, 0, 0, tamanhoGame, tamanhoGame);
 
         context.beginPath();
-        context.lineWidth = "6";
+        context.lineWidth = "2";
         context.strokeStyle = "red";
-        
-        for (const i in cobrasEscadas.tabuleiro) {
-            context.rect(cobrasEscadas.tabuleiro[i].x, cobrasEscadas.tabuleiro[i].y, tamanho / 10, tamanho / 10);
-            context.font = "30px Arial";
-            context.fillText(i+"" , cobrasEscadas.tabuleiro[i].x, cobrasEscadas.tabuleiro[i].y+50);
+
+        for (let i = 0; i < cobrasEscadas.tabuleiro.length; i++) {
+            context.rect(cobrasEscadas.tabuleiro[i].x, cobrasEscadas.tabuleiro[i].y, tamanho, tamanho);
+            context.font = "15px Arial";
+            context.fillText(i+1, cobrasEscadas.tabuleiro[i].x + 10, cobrasEscadas.tabuleiro[i].y + 35);
         }
         context.stroke();
 
