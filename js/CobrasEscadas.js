@@ -41,8 +41,8 @@ export default class CobrasEscadas {
 
         if (this.vez === 1) {
             this.jogando = true;
-            const novaPosicao = this.jogador1.posicao + dado1 + dado2;
-            this.jogador1.moverAte(novaPosicao, () => {
+            //const novaPosicao = this.jogador1.posicao + dado1 + dado2;
+            this.jogador1.moverAte( dado1 + dado2, () => {
                 this.jogando = false;
                 console.log("passou na callback");
                 if (this.jogador1.posicao === 99)
