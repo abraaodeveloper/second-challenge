@@ -1,16 +1,21 @@
-import { cobras, escadas, jogador1, jogador2 } from "./util/gameObjectsUtil.js";
+import { cobras, escadas, imgP1, imgP2  } from "./util/gameObjectsUtil.js";
+import Jogador from "./Jogador.js";
 
 export default class CobrasEscadas {
 
     tabuleiro = []; // posições 
     vez = 1;
+    
+    vencedor = null;
 
     constructor(tamanho) {
         this.cobras = cobras;
         this.escadas = escadas;
         this.gerarTabuleiro(tamanho);
-        this.jogador1 = jogador1;
-        this.jogador2 = jogador2
+        this.jogando = false;
+
+        this.jogador1 = new Jogador("Jogador1", imgP1, this.tabuleiro);
+        this.jogador2 = new Jogador("Jogador2", imgP1, this.tabuleiro);
     }
 
     gerarTabuleiro(tamanho) {
@@ -28,11 +33,34 @@ export default class CobrasEscadas {
     }
 
     jogar(dado1, dado2) {
-        if (vez === 1) {
-            this.jogador1.moverAte(this.jogador1.posicao + dado1 + dado2);
-        } else {
-            this.jogador2.moverAte(this.jogador1.posicao + dado1 + dado2);
+
+        if (this.jogando) return false;
+        if (this.vencedor != null) {
+            return this.vencedor.nome + " Venceu!"
         }
-        vez = dado1 === dado2 ? vez : vez * -1;
+
+        if (this.vez === 1) {
+            this.jogando = true;
+            const novaPosicao = this.jogador1.posicao + dado1 + dado2;
+            this.jogador1.moverAte(novaPosicao, () => {
+                this.jogando = false;
+                console.log("passou na callback");
+                if (this.jogador1.posicao === 99)
+                    this.vencedor = jogador1;
+
+                this.vez = dado1 === dado2 ? this.vez : this.vez * -1;
+            });
+
+        } else {
+            this.jogando = true;
+            const novaPosicao = this.jogador2.posicao + dado1 + dado2;
+            this.jogador2.moverAte(novaPosicao, () => {
+                this.jogando = false;
+                if (this.jogador2.posicao === 99)
+                    this.vencedor = jogador2;
+
+                this.vez = dado1 === dado2 ? this.vez : this.vez * -1;
+            });
+        }
     }
 }
