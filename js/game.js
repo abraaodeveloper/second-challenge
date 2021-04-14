@@ -19,6 +19,18 @@ import CobrasEscadas from "./CobrasEscadas.js";
     function frameUpdate() {
         context.drawImage(background, 0, 0, tamanhoGame, tamanhoGame);
 
+
+
+
+        
+
+
+
+
+
+
+
+
         context.beginPath();
         context.lineWidth = "2";
         context.strokeStyle = "red";

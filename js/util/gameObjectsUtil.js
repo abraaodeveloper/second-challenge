@@ -1,5 +1,6 @@
 import Escada from "../Escada.js";
 import Cobra from "../Cobra.js";
+import Jogador from "../Jogador.js";
 
 const cobras = [
     new Cobra(16, [4, 5, 17], 6), // cobra marrom e verde - 1        
@@ -21,4 +22,14 @@ const escadas = [
     new Escada(71, 91), new Escada(87, 94),
 ];
 
-export {cobras, escadas};
+// Jogadores
+const imgP1 = new Image();
+imgP1.src = '././imgs/player1.png';
+
+const imgP2 = new Image();
+imgP2.src = '././imgs/player2.png';
+
+const jogador1 = new Jogador("Jogador 1", imgP1);
+const jogador2 = new Jogador("Jogador 2", imgP2);
+
+export {cobras, escadas, jogador1, jogador2 };
