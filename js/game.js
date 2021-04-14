@@ -46,14 +46,14 @@ function frameUpdate() {
         context.drawImage(cobrasEscadas.jogador1.img, cobrasEscadas.jogador1.x,
             cobrasEscadas.jogador1.y, tamanho, tamanho);
     }
-    cobrasEscadas.jogador1.mover();
+    if (cobrasEscadas.jogador1.podeMover) cobrasEscadas.jogador1.mover();
 
     // movimentação do jogador 2
     if (cobrasEscadas.jogador2.posicao != -1) {
         context.drawImage(cobrasEscadas.jogador2.img, cobrasEscadas.jogador2.x,
             cobrasEscadas.jogador2.y, tamanho, tamanho);
     }
-    cobrasEscadas.jogador2.mover();
+    if (cobrasEscadas.jogador2.podeMover) cobrasEscadas.jogador2.mover();
 
 
 

@@ -33,9 +33,9 @@ export default class Jogador {
         this.qtdPassosIndo = this.posicaoOndeIr - this.posicao;
 
         this.podeMover = true;
-        if(this.refTabuleiro.lenght <= this.posicaoOndeIr){
-            this.qtdPassosVoltando = (this.refTabuleiro.lenght -1) - this.posicao;
-            this.qtdPassosVoltando = this.posicaoOndeIr - (this.refTabuleiro.lenght -1);// ver se esse -1 esta coreeto 
+        if (this.refTabuleiro.lenght <= this.posicaoOndeIr) {
+            this.qtdPassosIndo = (this.refTabuleiro.lenght - 1) - this.posicao;
+            this.qtdPassosVoltando = this.posicaoOndeIr - (this.refTabuleiro.lenght - 1);// ver se esse -1 esta coreeto 
         }
     }
 
@@ -43,36 +43,35 @@ export default class Jogador {
         // se chegou em uma outra casa
         if (this.x >= this.refTabuleiro[this.posicao + 1].x
             && this.y >= this.refTabuleiro[this.posicao + 1].y
-            &&this.x <= this.refTabuleiro[this.posicao + 1].x + this.passo
+            && this.x <= this.refTabuleiro[this.posicao + 1].x + this.passo
             && this.y <= this.refTabuleiro[this.posicao + 1].y + this.passo) {
             this.posicao = this.posicao + 1;
             this.x = this.refTabuleiro[this.posicao + 1].x;
             this.y = this.refTabuleiro[this.posicao + 1].y;
 
-            if(this.qtdPassosIndo > 0){
+            if (this.qtdPassosIndo > 0) {
                 this.qtdPassosIndo--;
-            }else if(this.qtdPassosVoltando > 0){
+            } else if (this.qtdPassosVoltando > 0) {
                 this.qtdPassosVoltando--;
             }
             if (this.posicao === this.posicaoOndeIr) {
 
                 this.podeMover = false;
-                console.log(this.posicaoOndeIr+" - "+this.posicao);
+                console.log(this.posicaoOndeIr + " - " + this.posicao);
                 if (this.callback != null) this.callback();
                 this.callback = null;
-          
+
                 return;
             }
         }
-        
-        console.log("pode mover: "+ this.podeMover);
-        if(!this.podeMover){
-            if(this.qtdPassosIndo > 0){
-                this._moverParafrente();
-            }else if(this.qtdPassosVoltando > 0){
-                this._moverParaAtras();
-            }
+
+
+        if (this.qtdPassosIndo != 0) {
+            this._moverParafrente();
+        } else if (this.qtdPassosVoltando != 0) {
+            this._moverParaAtras();
         }
+
         /*
         if (this.x === this.refTabuleiro[this.posicao + 1].x
             && this.y === this.refTabuleiro[this.posicao + 1].y) {
@@ -82,33 +81,33 @@ export default class Jogador {
         */
     }
 
-    _moverParafrente(){
+    _moverParafrente() {
         if (this.x === this.refTabuleiro[this.posicao + 1].x) {
-            if(this.y < this.refTabuleiro[this.posicao + 1].y){
+            if (this.y < this.refTabuleiro[this.posicao + 1].y) {
                 this.y += this.passo;
-            }else{
+            } else {
                 this.y -= this.passo;
             }
         } else if (this.y === this.refTabuleiro[this.posicao + 1].y) {
-            if(this.x < this.refTabuleiro[this.posicao + 1].x){
+            if (this.x < this.refTabuleiro[this.posicao + 1].x) {
                 this.x += this.passo;
-            }else{
+            } else {
                 this.x -= this.passo;
             }
         }
     }
 
-    _moverParaAtras(){
+    _moverParaAtras() {
         if (this.x === this.refTabuleiro[this.posicao + 1].x) {
-            if(this.y < this.refTabuleiro[this.posicao + 1].y){
+            if (this.y < this.refTabuleiro[this.posicao + 1].y) {
                 this.y -= this.passo;
-            }else{
+            } else {
                 this.y += this.passo;
             }
         } else if (this.y === this.refTabuleiro[this.posicao + 1].y) {
-            if(this.x < this.refTabuleiro[this.posicao + 1].x){
+            if (this.x < this.refTabuleiro[this.posicao + 1].x) {
                 this.x -= this.passo;
-            }else{
+            } else {
                 this.x += this.passo;
             }
         }
